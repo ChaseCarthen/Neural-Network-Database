@@ -1,0 +1,18 @@
+# the services encapsulates the startup of this project.
+services:
+  database:
+    # Official Postgres image from DockerHub (we use the last version)
+    image: pgvector/pgvector:pg17 #"postgres:latest"
+
+    ports:
+      - 5432:5432
+
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: graphdb
+
+    volumes:
+      - ./db-data/:/var/lib/postgresql/data/
+        #- ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./graph.sql:/docker-entrypoint-initdb.d/graph.sql

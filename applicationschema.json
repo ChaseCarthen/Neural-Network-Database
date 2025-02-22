@@ -1,0 +1,109 @@
+{
+  "title": "Neural Network Database Schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "library": {
+      "type": "string"
+    },
+    "network": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "parameters": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "shape": {
+                  "type": "array"
+                },
+                "interpolated_vector": {
+                  "type": "array"
+                }
+              }
+            }
+          },
+          "attributes": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "graph": {
+      "type": "object",
+      "properties": {
+        "model": {
+          "type": "string"
+        },
+        "library": {
+          "type": "string"
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "op": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "target": {
+                "type": "string"
+              },
+              "input": {
+                "type": "string"
+              },
+              "parameters": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "attributes": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer"
+                  }
+                }
+              }
+            },
+            "required": [
+              "op",
+              "name",
+              "target",
+              "input",
+              "parameters",
+              "attributes"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "name",
+    "library",
+    "nodes"
+  ]
+}

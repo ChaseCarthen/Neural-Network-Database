@@ -5,6 +5,7 @@ from sqlalchemy import (
     Text,
     String,
     ForeignKey,
+    LargeBinary
 )
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.dialects.postgresql import JSONB
@@ -65,6 +66,24 @@ class Parameter(Base):
     def __repr__(self):
         return f"<Parameter(parameter_id={self.parameter_id}, parameter_name={self.parameter_name})>"
 
+class Paper(Base):
+    __tablename__ = 'paper'
+
+    paper_id = Column(BigInteger, primary_key=True, autoincrement=True)
+    paper_name = Column(String, nullable=True)
+    contents = Column(LargeBinary, nullable=True)
+
+    def __repr__(self):
+        return f"<Paper(paper_id={paper_id}, paper_name={paper_name})>"
+
+
+class Paper_Model(Base)
+    paper_model_id = Column(BigInteger, primary_key=True, autoincrement=True)
+    paper_id = Column(Integer)
+    model_id = Column(Integer)
+
+    def __repr__(self):
+        return f"<Paper_Model(paper_model_id={paper_model_id}, paper_id={paper_id}, model_id={model_id} )>"
 
 #class InterpolatedParametersVector(Base):
 #    __tablename__ = 'interpolated_parameters_vector'

@@ -1,10 +1,10 @@
 CREATE EXTENSION vector;
 
-CREATE TABLE paper {
+CREATE TABLE paper (
   paper_id bigserial PRIMARY KEY,
   paper_name Text,
   contents bytea -- may be better a filepath
-};
+);
 
 CREATE TABLE model (
   model_id bigserial PRIMARY KEY,

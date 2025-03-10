@@ -77,7 +77,8 @@ class Paper(Base):
         return f"<Paper(paper_id={paper_id}, paper_name={paper_name})>"
 
 
-class Paper_Model(Base)
+class Paper_Model(Base):
+    __tablename__ = "paper_model"
     paper_model_id = Column(BigInteger, primary_key=True, autoincrement=True)
     paper_id = Column(Integer)
     model_id = Column(Integer)

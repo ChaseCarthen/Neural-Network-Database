@@ -1,5 +1,10 @@
 CREATE EXTENSION vector;
 
+CREATE TABLE paper {
+  paper_id bigserial PRIMARY KEY,
+  paper_name Text,
+  contents bytea -- may be better a filepath
+};
 
 CREATE TABLE model (
   model_id bigserial PRIMARY KEY,
@@ -7,6 +12,12 @@ CREATE TABLE model (
   library Text,
   average_weight_embedding vector(256),
   graph jsonb
+);
+
+CREATE TABLE paper_model (
+   paper_model_id serial,
+   paper_id serial,
+   model_id serial
 );
 
 CREATE TABLE layer (
@@ -31,6 +42,8 @@ CREATE TABLE parameter ( parameter_id bigserial PRIMARY KEY,
            FOREIGN KEY(layer_id)
 		REFERENCES layer(layer_id)
 );
+
+
 
 
 --CREATE TABLE interpolated_parameters_vector( interpolated_parameter_id bigserial primary key,

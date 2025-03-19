@@ -1,0 +1,147 @@
+{"source":"https://www.coursera.org/collections/deep-learning-terms",
+"date":"2025-3-16",
+"terms":{
+
+
+"Activation Function":
+
+"An activation function is a mathematical function applied to the output of a neuron in a deep-learning model. It introduces non-linearity, allowing the network to learn complex patterns and make accurate predictions.",
+
+
+"Backpropagation":
+
+"Backpropagation is a training algorithm used in deep learning to adjust the model's weights based on the calculated error between predicted and actual output. It helps the model learn from its mistakes and improve over time.",
+
+
+
+"Convolutional Neural Network (CNN)":
+
+"A Convolutional Neural Network is a type of deep learning model designed explicitly for image recognition and processing. It uses convolutional layers to detect patterns and features in images automatically.",
+
+
+
+"Deep Learning":
+
+"Deep learning is a subset of machine learning that uses neural networks with multiple layers (deep architectures) to learn from data and make predictions. It has shown remarkable success in various tasks, including image recognition, natural language processing, and speech recognition.",
+
+
+
+"Epoch":
+
+"In deep learning, an epoch refers to a complete pass through the entire training data set during model training. Multiple epochs are usually required to optimize the model's performance.",
+
+
+
+"Feedforward Neural Network":
+
+"A feedforward neural network is the simplest form of deep learning model, where data flows in one direction from input to output without any feedback loops.",
+
+
+
+"Gradient Descent":
+
+"Gradient descent is an optimization algorithm used in deep learning to minimize the model's loss function by adjusting the weights toward the steepest descent.",
+
+
+
+"Hyperparameter":
+
+"Hyperparameters are parameters set before the training of a deep learning model, such as learning rate, number of hidden layers, and batch size. Tuning hyperparameters is crucial for optimizing model performance.",
+
+
+
+"Image Recognition":
+"Image recognition is a deep learning application that identifies and classifies objects or patterns within images.",
+
+
+
+"Jupyter Notebook":
+
+"Jupyter Notebook is an interactive computing environment commonly used for deep learning experimentation, data analysis, and visualization.",
+
+
+
+"Keras":
+
+"Keras is an open-source deep learning library written in Python. It provides a high-level API for building and training neural networks, making deep learning more accessible to beginners.",
+
+
+
+"LSTM (Long Short-Term Memory)":
+
+"LSTM is a type of recurrent neural network (RNN) designed to process data sequences, making it suitable for tasks involving time-series data or natural language processing.",
+
+
+
+"Mini-Batch Gradient Descent":
+
+"Mini-batch gradient descent is a variation of gradient descent where the model's parameters are updated using a subset (mini-batch) of the training data instead of the entire data set. It balances efficiency and convergence speed.",
+
+
+
+"Neural Network":
+
+"A neural network is the fundamental building block of deep learning models. It consists of interconnected neurons organized into layers to process and transform data.",
+
+
+
+"Overfitting":
+
+"Overfitting occurs when a deep learning model performs well on the training data but fails to generalize to new, unseen data. It is essential to avoid overfitting by regularization techniques or more data.",
+
+
+
+"Pooling Layer":
+
+"Pooling layers in a deep learning model reduce the spatial dimensions of the input data, reducing computational complexity and helping the model focus on important features.",
+
+
+
+"Quantum Machine Learning":
+
+"Quantum machine learning combines principles from quantum mechanics and machine learning to develop algorithms that can be executed on quantum computers.",
+
+
+
+"ReLU (Rectified Linear Unit)":
+
+"ReLU is an activation function widely used in deep learning due to its simplicity and efficiency. It introduces non-linearity by setting all negative values to zero.",
+
+
+
+"Stochastic Gradient Descent (SGD)":
+
+"Stochastic gradient descent is a variant of gradient descent where the model's parameters are updated after processing each data point. It is computationally efficient but can be noisy.",
+
+
+
+"Transfer Learning":
+
+"Transfer learning is a technique where a pre-trained deep learning model is used as a starting point for a new task, leveraging the knowledge gained from previous tasks to improve performance on a new task.",
+
+
+
+"Underfitting":
+
+"Underfitting occurs when a deep learning model fails to capture the underlying patterns in the data. It can be addressed by increasing model complexity or gathering more data.",
+
+
+
+"Variational Autoencoder (VAE)":
+
+"VAE is a generative deep learning model that learns to encode data into a latent space and decode it back to generate new data samples.",
+
+
+
+"Weight Initialization":
+
+"Weight initialization is setting the initial values of the model's weights. Proper weight initialization is crucial for efficient model training and convergence.",
+
+
+
+"Xavier/Glorot Initialization":
+
+"Xavier (Glorot) initialization is a popular weight initialization technique that sets the initial weights using a specific distribution to help stabilize training and prevent vanishing or exploding gradients."
+
+}
+}

@@ -1,0 +1,145 @@
+{ "source": "https://www.geeksforgeeks.org/100-deep-learning-terms-explained/",
+"date": "20253-16","terms": {
+
+"Activation Function":"A function is applied to the output of each neuron to introduce non-linearity into the network. Common examples include ReLU (Rectified Linear Unit) and sigmoid functions.",
+"Adam Optimizer":"An optimization algorithm that adjusts the learning rate dynamically and combines the advantages of two other optimizers, AdaGrad and RMSProp.",
+"Backpropagation":"A method used to update the weights of the network by propagating the error gradient backwards through the network.",
+"Batch Normalization":"A technique to improve the training speed and stability of a neural network by normalizing the inputs to each layer.",
+"Convolutional Neural Network (CNN)":"A type of neural network particularly effective for image processing, utilizing convolutional layers to detect spatial hierarchies.",
+"Cost Function":"Also known as a loss function, it measures how well the model's predictions match the actual outcomes. The goal is to minimize this function.",
+"Data Augmentation":"A technique used to artificially increase the size of a training dataset by applying transformations like rotation and scaling to existing data.",
+"Dropout":"A regularization method where random neurons are dropped during training to prevent overfitting by ensuring the network does not rely too heavily on any one neuron.",
+"Epoch":"One complete pass through the entire training dataset. Multiple epochs are used to train a model effectively.",
+"Feedforward Neural Network":"The simplest type of artificial neural network where connections between the nodes do not form a cycle.",
+"Gradient Descent":"An optimization algorithm used to minimize the cost function by iteratively adjusting the model’s weights in the direction of the negative gradient.",
+"Hyperparameter":"A parameter that is set before the training process begins, such as learning rate or number of layers. Unlike model parameters, hyperparameters are not learned from the training data.",
+"K-Fold Cross-Validation":"A technique for evaluating a model’s performance by dividing the dataset into ‘k’ subsets and training the model ‘k’ times, each time using a different subset as validation and the remaining as training data.",
+"Learning Rate":"A hyperparameter that controls the size of the steps taken during optimization. Too high can lead to instability, while too low can slow down convergence.",
+"Loss Function":"A function that quantifies the difference between the predicted output and the actual target values. It guides the optimization process by measuring how well the model performs.",
+"Model Overfitting":"Occurs when a model learns the training data too well, including its noise, which leads to poor performance on new, unseen data.",
+"Model Underfitting":"Occurs when a model is too simple to capture the underlying patterns in the data, resulting in poor performance on both training and test data.",
+"Neural Network":"A computational model inspired by the human brain, consisting of interconnected nodes (neurons) organized in layers to perform complex tasks.",
+"Normalization":"The process of adjusting the input data to improve the performance and training stability of the model, such as scaling inputs to a standard range.",
+"Pooling Layer":"A layer in CNNs that reduces the spatial dimensions of the input, helping to make the model more computationally efficient and less prone to overfitting.",
+"ReLU (Rectified Linear Unit)":"An activation function that outputs the input directly if it is positive; otherwise, it outputs zero. It helps introduce non-linearity into the network.",
+"RNN (Recurrent Neural Network)":"A type of neural network designed for sequential data where connections between neurons form directed cycles, allowing information to persist.",
+"Regularization":"Techniques used to prevent overfitting by adding constraints or penalties to the loss function, such as L1 and L2 regularization.",
+"Softmax Function":"An activation function used in the output layer of a classification network that converts raw scores into probabilities, making it suitable for multi-class classification problems.",
+"Stochastic Gradient Descent (SGD)":"A variant of gradient descent where updates are made based on a randomly selected subset of the training data, improving convergence speed and reducing computational cost.",
+"Support Vector Machine (SVM)":"A supervised learning model that finds the optimal hyperplane separating classes in a high-dimensional space. Not exclusive to deep learning but often used in conjunction with neural networks.",
+"Tensor":"A multi-dimensional array used to represent data in deep learning frameworks. Tensors can have different ranks (dimensions), such as scalars, vectors, and matrices.",
+"Training Data":"Data used to train the model, enabling it to learn patterns and make predictions.",
+"Validation Data":"A separate dataset used during training to tune hyperparameters and assess the model’s performance.",
+"Test Data":"Data used to evaluate the final performance of the trained model. It should be independent of the training and validation datasets.",
+"Transfer Learning":"A technique where a pre-trained model on one task is fine-tuned or adapted for a different but related task, leveraging existing knowledge.",
+"Vanishing Gradient Problem":"A situation where gradients become too small during backpropagation, causing slow learning or halted training, especially in deep networks.",
+"Weight Initialization":"The process of setting initial weights for a neural network before training begins. Proper initialization is crucial for effective learning.",
+"Word Embeddings":"Representations of words in continuous vector space, capturing semantic relationships between words. Examples include Word2Vec and GloVe.",
+"Autoencoder":"A type of neural network used to learn efficient representations of data by compressing it into a lower-dimensional space and then reconstructing it.",
+"Batch Size":"The number of training samples processed before the model’s weights are updated. Larger batch sizes can lead to more stable estimates of gradients but require more memory.",
+"Categorical Cross-Entropy":"A loss function commonly used for multi-class classification problems, measuring the difference between the true distribution and the predicted distribution.",
+"Early Stopping":"A technique to prevent overfitting by stopping training when the performance on a validation set starts to degrade.",
+"Exploding Gradient Problem":"A problem where gradients become excessively large during training, leading to unstable updates and model divergence.",
+"Generative Adversarial Network (GAN)":"A type of neural network consisting of two models: a generator that creates data and a discriminator that evaluates it. The two models compete, improving each other’s performance.",
+"Gradient Clipping":"A technique to prevent the exploding gradient problem by capping the gradient values during backpropagation.",
+"Hyperparameter Tuning":"The process of optimizing hyperparameters to improve model performance, often using techniques like grid search or random search.",
+"Latent Space":"A lower-dimensional representation of the input data where similar inputs are closer together. Useful in models like autoencoders and GANs.",
+"Long Short-Term Memory (LSTM)":"A type of RNN architecture designed to capture long-term dependencies by using gates to control the flow of information.",
+"Mean Squared Error (MSE)":
+"A common loss function used for regression problems, measuring the average squared difference between predicted and actual values.",
+"Minibatch":
+"A subset of the training data used in each iteration of the training process. Minibatch training balances computational efficiency with model convergence.",
+"Model Architecture":
+"The design of a neural network, including the arrangement and types of layers, neurons, and connections.",
+"Neural Network Layer":
+"A collection of neurons that process inputs and pass their outputs to subsequent layers. Examples include dense layers, convolutional layers, and recurrent layers.",
+"One-Hot Encoding":
+"A technique to represent categorical variables as binary vectors, where each category is encoded as a vector with a single high (1) value and all other values set to low (0).",
+"Principal Component Analysis (PCA)":
+"A dimensionality reduction technique that transforms data into a set of orthogonal components, capturing the most variance with fewer dimensions.",
+"Pooling Operation":
+"An operation in CNNs that reduces the spatial dimensions of feature maps, such as max pooling or average pooling.",
+"Preprocessing":
+"The steps taken to clean and format raw data before feeding it into a deep learning model. This may include normalization, data augmentation, and handling missing values.",
+"Residual Network (ResNet)":
+"A type of CNN architecture that uses skip connections (residual connections) to allow gradients to flow through the network more effectively during training.",
+"Self-Supervised Learning":
+"A form of unsupervised learning where the model learns to predict parts of the data from other parts, creating its own supervisory signal.",
+"Sequence-to-Sequence Model":
+"A type of model used for tasks involving sequences, such as translation or summarization, where the input and output are sequences of varying lengths.",
+"Softmax Classifier":
+"A type of classifier that uses the softmax function to produce a probability distribution over multiple classes for multi-class classification problems.",
+"Sparse Representation":
+"A way of encoding data where only a small number of elements are non-zero, often used in high-dimensional data settings.",
+"Stochastic Process":
+"A collection of random variables representing a process evolving over time. In deep learning, it often refers to stochastic optimization methods.",
+"Support Vector Machine (SVM)":
+"An algorithm that finds the optimal boundary between classes in a high-dimensional space, often used in conjunction with deep learning techniques.",
+"Training Loss":
+"The loss computed on the training data during the model training process. Monitoring this helps assess how well the model is learning.",
+"Transformer Model":
+"A model architecture designed for sequence-to-sequence tasks that uses self-attention mechanisms to process sequences in parallel, significantly improving performance in natural language processing.",
+"Variational Autoencoder (VAE)":
+"An extension of autoencoders that learns a probabilistic distribution over the latent space, allowing for more flexible generation of new samples.",
+"Weight Decay":
+"A regularization technique that adds a penalty for large weights to the loss function, helping to prevent overfitting.",
+"Zero Padding":
+"A technique used in CNNs to add zeros around the border of the input data, allowing the network to maintain spatial dimensions after convolution operations.",
+"Attention Mechanism":
+"A method that allows models to focus on specific parts of the input sequence, improving performance on tasks like translation and summarization.",
+"Bagging (Bootstrap Aggregating":
+"An ensemble learning method that combines predictions from multiple models trained on different subsets of the data to improve accuracy and robustness.",
+"Bayesian Neural Network":
+"A type of neural network that incorporates uncertainty in the weights by treating them as distributions rather than fixed values.",
+"Bilinear Interpolation":
+"A method used for resampling or resizing images by calculating the weighted average of four nearest pixel values.",
+"Batch Gradient Descent":
+"A variant of gradient descent where the entire training dataset is used to compute the gradient before updating the model’s weights.",
+"Capsule Network (CapsNet)":
+"A type of neural network designed to address some of the limitations of CNNs, particularly in recognizing patterns from various perspectives.",
+"Class Imbalance":
+"A problem where certain classes are underrepresented in the training data, which can lead to biased or poor model performance.",
+"Data Leakage":
+"An issue where information from outside the training dataset is used to create the model, leading to overly optimistic performance estimates.",
+"Deep Belief Network (DBN)":
+"A generative model composed of multiple layers of stochastic, latent variables, used for unsupervised learning.",
+"Embedding Layer":
+"A layer in neural networks that maps discrete input values into continuous vector representations, often used in natural language processing.",
+"Exploration vs. Exploitation":
+"A trade-off in reinforcement learning where exploration involves trying new actions, while exploitation involves leveraging known strategies to maximize rewards.",
+"Feature Extraction":
+"The process of transforming raw data into a set of features that are more suitable for model training, often using techniques like PCA or CNNs.",
+"Gradient Boosting":
+"An ensemble learning technique that combines weak learners to create a strong learner, by training each new model to correct errors made by the previous models.",
+"Hyperparameter Search":
+"The process of finding the optimal set of hyperparameters for a model, often using methods like grid search, random search, or Bayesian optimization.",
+"Imbalanced Dataset":
+"A dataset where the classes are not represented equally, which can affect the model’s performance and require special handling techniques.",
+"Instance Normalization":
+"A normalization technique applied to individual instances rather than across a batch, useful in style transfer tasks.",
+"Kernel Trick":
+"A technique used to transform data into a higher-dimensional space to make it linearly separable, often used with SVMs.",
+"Label Smoothing":
+"A regularization technique that softens the target labels to make the model less confident and reduce overfitting.",
+"Latent Variable":
+"A variable that is not directly observed but is inferred from the model. Latent variables help capture underlying patterns in the data.",
+"Long-Term Dependency":
+"The ability of a model to learn relationships between distant elements in a sequence, a challenge often addressed by architectures like LSTM.",
+"Mean Absolute Error (MAE)":
+"A loss function used for regression problems that measures the average absolute difference between predicted and actual values.",
+"Model Ensemble":"Combining predictions from multiple models to improve performance and robustness, often by averaging or voting.",
+"Monte Carlo Dropout":"A method for approximating Bayesian inference in deep learning by applying dropout during both training and inference.",
+"Neural Style Transfer":"A technique that applies the style of one image to the content of another, using neural networks to blend the characteristics.",
+"Node":"An individual unit in a neural network layer that performs computations and contributes to the layer’s output.",
+"One-Hot Vector":"A binary vector used to represent categorical variables, where only one element is set to 1 and all others are set to 0.",
+"Optimizer":"An algorithm used to update the weights of the model during training to minimize the loss function. Examples include Adam and SGD.",
+"Overfitting":"A scenario where the model performs well on training data but poorly on unseen data, indicating it has learned noise or specific patterns rather than general features.",
+"Padding":"Adding extra values (e.g., zeros) around the edges of the input data to ensure that convolutions apply to the entire input, maintaining dimensionality.",
+"Perceptron":"The simplest type of artificial neuron, which performs a linear transformation followed by an activation function to classify input data.",
+"Residual Block":"A building block in deep networks that includes a shortcut connection to bypass one or more layers, helping to mitigate the vanishing gradient problem.",
+"Sequence-to-Sequence Learning":"A framework for modeling tasks where both input and output are sequences, such as machine translation or speech recognition.",
+"Simulated Annealing":"An optimization technique inspired by the annealing process in metallurgy, used to escape local minima by allowing occasional increases in the cost function.",
+"Sparse Matrix":"A matrix in which most of the elements are zero, often used in situations where efficiency is crucial due to the large number of zero entries.",
+"Transfer Learning":"Leveraging a pre-trained model to solve a different but related problem, reducing the need for extensive data and computation.",
+"Zero-Shot Learning":"A learning paradigm where the model is able to recognize and classify instances of classes it has not seen during training, often using semantic representations."
+}}

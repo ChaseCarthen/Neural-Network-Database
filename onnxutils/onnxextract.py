@@ -135,7 +135,7 @@ def extract_compute_graph_taxonomy_style(filename,savePath='./outdata',model_nam
         layer['attributes'] = node_info['attributes'] = parse_onnx_attributes(node)
         layer['parameters'] = []
         node_info['parameters'] = {}
-        for inp in list(node.input):
+        for inp in list(node.input) + list(node.output) + [node.name]:
             parameter = {}
             parameter['name'] = inp
             parameter['shape'] = node_info['parameters'][inp] = shapes.get(inp,[])
@@ -167,7 +167,7 @@ def extract_compute_graph_taxonomy_style(filename,savePath='./outdata',model_nam
         if parameters:
             layers.append({'name':node.name})
             print(f"Node Name: {node.name}, Type: {node.op_type}")
-            for input_name in node.input:
+            for input_name in list(node.input):
                 
                 # Check if the input is an initializer
                 initializer = next((init for init in graph.initializer if init.name == input_name), None)

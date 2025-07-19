@@ -1,5 +1,10 @@
 CREATE EXTENSION vector;
 
+create TABLE dataset (dataset_id bigserial primary key,
+datsaet_name text,
+source text
+);
+
 CREATE TABLE paper (
   paper_id bigserial PRIMARY KEY,
   paper_name Text,
@@ -35,7 +40,7 @@ CREATE TABLE layer (
 
 CREATE TABLE parameter ( parameter_id bigserial PRIMARY KEY, 
 	parameter_name Text,
-        layer_id SERIAL,
+  layer_id SERIAL,
 	shape text,
 	weight_embedding vector(256),
         CONSTRAINT fk_layer_id
@@ -43,6 +48,15 @@ CREATE TABLE parameter ( parameter_id bigserial PRIMARY KEY,
 		REFERENCES layer(layer_id)
 );
 
+CREATE TABLE neural_network_output (
+  output_id bigserial primary key,
+  dataset_id serial,
+  average_output vector(2048),
+  average_steelette_output vector(3),
+  CONSTRAINT fk_dataset_id 
+  FOREIGN KEY(dataset_id) 
+  REFERENCES dataset(dataset_id)
+);
 
 
 

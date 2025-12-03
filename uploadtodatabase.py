@@ -45,17 +45,24 @@ def write_to_database(data):
     session.commit() 
 
 if __name__ == '__main__':
-    engine = db.create_engine('postgresql://username:password@localhost/graphdb')
-    Session = sessionmaker(bind=engine)
-    session = Session()
+    print('main')
+    #engine = db.create_engine('postgresql://username:password@localhost/graphdb')
+    #Session = sessionmaker(bind=engine)
+    #session = Session()
 
     for path in Path('/fastdata2/data/onnxfiles/models/validated/').rglob('*.onnx'):
-        write_to_database(extract_compute_graph_taxonomy_style(path,savePath='',parameters=False,writeFile=False))
+        print(extract_compute_graph_taxonomy_style(path,savePath='',parameters=False,writeFile=False))
+        input()
+        #write_to_database(extract_compute_graph_taxonomy_style(path,savePath='',parameters=False,writeFile=False))
         
 
 
     models  = [ 'alexnet','googlenet','regnet_y_400mf','swin_t','squeezenet1_0','inception_v3', 'resnet101', 'resnet152', 'resnet18', 'resnet34', 'resnet50', 'vgg11', 'vgg11_bn', 'vgg13', 'vgg13_bn', 'vgg16', 'vgg16_bn', 'vgg19', 'vgg19_bn','vit_b_16','vit_b_32','vit_l_16','vit_l_32','vit_h_14']   
     for modelname in models:
+        print('test')
         model = tmodels.get_model(modelname,weights="DEFAULT")
         data = torchextract.extract_model_properties(model, name=modelname)
-        write_to_database(data)
+        print(data)
+        print('test')
+        input()
+        #write_to_database(data)

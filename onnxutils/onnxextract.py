@@ -86,15 +86,20 @@ def parse_onnx_attributes(node,onlytensorsize=True):
             parameters[attr.name] = None  # Fallback for unknown types
     return parameters
 
-def extract_compute_graph_taxonomy_style(filename,savePath='./outdata',model_name='',parameters=False,writeFile=True):
+def extract_compute_graph_taxonomy_style(filename,savePath='./outdata',model_name='',parameters=False,writeFile=True,interpolateWeights=True):
+
     interpolate_space = np.linspace(0, 1, num=256)
     if model_name == '':
         model_name = os.path.splitext(os.path.basename(filename))[0]
     if writeFile and not os.path.exists(savePath):
         os.mkdir(savePath)
     
+    savePath = f'{savePath}/{model_name}_dir'
+    if not os.path.exists(savePath):
+        os.mkdir(savePath)
     # Gather the names of nodes already present (using the 'name' field)
 
+    #print(parameters)
 
     model = onnx.load(filename)
 
@@ -119,7 +124,7 @@ def extract_compute_graph_taxonomy_style(filename,savePath='./outdata',model_nam
     graph = model.graph
     existing_names = [ node.name for node in graph.node]
     outdata = {'model':model_name,'nodes':[],'library':'onnx'}
-    parameters = []
+    parameters_list = []
     layers = []
     for node in graph.node:
         layer = {}
@@ -135,22 +140,27 @@ def extract_compute_graph_taxonomy_style(filename,savePath='./outdata',model_nam
         layer['attributes'] = node_info['attributes'] = parse_onnx_attributes(node)
         layer['parameters'] = []
         node_info['parameters'] = {}
-        for inp in list(node.input):
+        for inp in list(node.input) + list(node.output) + [node.name]:
             parameter = {}
             parameter['name'] = inp
             parameter['shape'] = node_info['parameters'][inp] = shapes.get(inp,[])
             initializer =  next((init for init in graph.initializer if init.name == inp), None)
             if initializer:
                 weight_data = numpy_helper.to_array(initializer).flatten()
-                try: 
-                    interpolator = interpolate.interp1d(np.linspace(0,1,weight_data.shape[0]), weight_data ,kind='linear')
-                    weight_data = interpolator(interpolate_space)
-                    parameter['interpolated_vector'] =  weight_data.tolist()
-                except:
-                    parameter['interpolated_vector'] = np.zeros((256))
-                    print('WARNING!: something went wrong in interpolation',inp)
-            if 'interpolated_vector' in parameter:
-                layer['parameters'].append(parameter)
+                if interpolateWeights:
+                    try: 
+                        interpolator = interpolate.interp1d(np.linspace(0,1,weight_data.shape[0]), weight_data ,kind='linear')
+                        weight_data = interpolator(interpolate_space)
+                        parameter['interpolated_vector'] =  weight_data.tolist()
+                    except:
+                        parameter['interpolated_vector'] = np.zeros((256)).tolist()
+                        #print('WARNING!: something went wrong in interpolation',inp)
+                    if 'interpolated_vector' in parameter:
+                        layer['parameters'].append(parameter)
+                else:
+                    parameter['weight_data'] = weight_data.tolist()
+                    layer['parameters'].append(parameter)
+                    #print(weight_data)
         layers.append(layer)
         outdata['nodes'].append(node_info)
         
@@ -165,26 +175,29 @@ def extract_compute_graph_taxonomy_style(filename,savePath='./outdata',model_nam
         #        outdata['nodes'].append(placeholder)
 
         if parameters:
+            #print('here')
             layers.append({'name':node.name})
-            print(f"Node Name: {node.name}, Type: {node.op_type}")
-            for input_name in node.input:
+            #print(f"Node Name: {node.name}, Type: {node.op_type}")
+            for input_name in list(node.input):
                 
                 # Check if the input is an initializer
                 initializer = next((init for init in graph.initializer if init.name == input_name), None)
                 if initializer:
                     shape = [dim for dim in initializer.dims]
                     #print(initializer)
-                    print(f"  Initializer - Name: {initializer.name}, Shape: {shape}")
+                    #print(f"  Initializer - Name: {initializer.name}, Shape: {shape}")
                     weight_data = numpy_helper.to_array(initializer)
                     #np.frombuffer(initializer.raw_data, dtype=np.float32).reshape(initializer.dims)
-                    filename = f'{savePath}{model_name}_{initializer.name}'
+                    filename = f'{savePath}/{model_name}_{initializer.name.replace("/","_")}.npy'
+                    #print(filename)
                     np.save( filename, weight_data)
                     layer_type = layer_mapping.get(node.op_type,node.op_type)
-                    parameters.append({'filename':os.path.basename(filename+'.npy'),'layer_type':layer_type,'layer_name':node.name,'parameter_name':initializer.name,'shape':shape})
+                    parameters_list.append({'filename':os.path.basename(filename),'layer_type':layer_type,'layer_name':node.name,'parameter_name':initializer.name,'shape':shape})
                 else:
-                    print(f"  Input - Name: {input_name} (Not an initializer)")
+                    pass
+                    #print(f"  Input - Name: {input_name} (Not an initializer)")
     if parameters:
-        outdata['parameter_in_order_files'] = parameters
+        outdata['parameter_in_order_files'] = parameters_list
         outdata['layers'] = layers
     outjson['network'] = layers
     outjson['graph'] = outdata
@@ -198,11 +211,15 @@ def extract_compute_graph_taxonomy_style(filename,savePath='./outdata',model_nam
 
 class ONNXProgram:
     def extract_properties(self,filepath,savePath='./outdata/',model_name='',parameters=False):
-        
         #files = glob.glob(filepath+'*.onnx',recursive=True)
-        for path in Path(filepath).rglob('*.onnx'):
-            extract_compute_graph_taxonomy_style(path,savePath=savePath,parameters=parameters)
-            print(path)
+        print(filepath)
+        if os.path.isfile(filepath):
+            extract_compute_graph_taxonomy_style(filepath,savePath=savePath,parameters=parameters)
+        else:
+            for path in Path(filepath).rglob('*.onnx'):
+                print('testing: ', path)
+                extract_compute_graph_taxonomy_style(path,savePath=savePath,parameters=parameters)
+
     
     def inference_extraction(self,filename,model_type,model_name,savePath='./outdata'):
         # https://github.com/microsoft/onnxruntime/issues/1455
@@ -279,8 +296,8 @@ class ONNXProgram:
         # Load ONNX model
         model = onnx.load(onnx_file)
         # not including the raw data of the initializers
-        model.graph.ClearField("initializer")    
-        model_json = MessageToJson(model, including_default_value_fields=False)
+        #model.graph.ClearField("initializer")    
+        model_json = MessageToJson(model)#, including_default_value_fields=False)
 
         # Save as JSON
         #with open(f"{model_name}.json", "w") as f:
